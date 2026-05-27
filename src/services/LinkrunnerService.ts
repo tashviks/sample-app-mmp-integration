@@ -32,7 +32,7 @@ interface PaymentData {
   amount: number;
   userId: string;
   paymentId?: string;
-  type?: 'FIRST_PAYMENT' | 'SECOND_PAYMENT' | 'WALLET_TOPUP' | 'FUNDS_WITHDRAWAL' | 'SUBSCRIPTION_CREATED' | 'SUBSCRIPTION_RENEWED' | 'ONE_TIME' | 'RECURRING' | 'DEFAULT';
+  type?: 'FIRST_PAYMENT' | 'WALLET_TOPUP' | 'FUNDS_WITHDRAWAL' | 'SUBSCRIPTION_CREATED' | 'SUBSCRIPTION_RENEWED' | 'ONE_TIME' | 'RECURRING' | 'DEFAULT';
   status?: 'PAYMENT_INITIATED' | 'PAYMENT_COMPLETED' | 'PAYMENT_FAILED' | 'PAYMENT_CANCELLED';
   eventData?: Record<string, any>;
 }
@@ -201,9 +201,15 @@ class LinkrunnerService {
 
     try {
       const data = await linkrunner.getAttributionData();
-      this.attributionData = data;
+      if (data && typeof data === 'object') {
+        this.attributionData = data as AttributionData;
+        console.log('[Linkrunner] Attribution data retrieved:', data);
+        return this.attributionData;
+      }
+
+      this.attributionData = null;
       console.log('[Linkrunner] Attribution data retrieved:', data);
-      return data;
+      return null;
     } catch (error) {
       console.error('[Linkrunner] Error getting attribution data:', error);
       return null;

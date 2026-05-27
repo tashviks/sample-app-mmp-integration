@@ -5,6 +5,7 @@ import {
   StyleSheet,
   SafeAreaView,
   ScrollView,
+  Alert,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import {
@@ -50,7 +51,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
   const handleTrackEvent = async () => {
     try {
       if (!eventName.trim()) {
-        alert('Please enter an event name');
+        Alert.alert('Missing event name', 'Please enter an event name');
         return;
       }
 
@@ -77,7 +78,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
       console.log('[Dashboard] Event tracked:', eventName, parsedData);
     } catch (err) {
       console.error('[Dashboard] Error tracking event:', err);
-      alert('Error tracking event');
+      Alert.alert('Error', 'Error tracking event');
     } finally {
       setLoading(false);
     }
@@ -93,7 +94,7 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
       setTimeout(() => setSuccess(false), 2000);
     } catch (err) {
       console.error('[Dashboard] Error fetching attribution:', err);
-      alert('Error fetching attribution data');
+      Alert.alert('Error', 'Error fetching attribution data');
     } finally {
       setLoading(false);
     }

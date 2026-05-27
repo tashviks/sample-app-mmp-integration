@@ -2,6 +2,8 @@
  * Global type definitions and constants
  */
 
+import type { ParamListBase } from '@react-navigation/native';
+
 // Replace these with your actual Linkrunner credentials
 // Available at: https://dashboard.linkrunner.io/dashboard?s=members&m=documentation
 export const LINKRUNNER_CONFIG = {
@@ -19,7 +21,7 @@ export enum Screen {
   SETTINGS = 'Settings',
 }
 
-export interface RootStackParamList {
+export interface RootStackParamList extends ParamListBase {
   [Screen.HOME]: undefined;
   [Screen.SIGNUP]: undefined;
   [Screen.DASHBOARD]: undefined;

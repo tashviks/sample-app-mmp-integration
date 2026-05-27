@@ -1,16 +1,4 @@
 {
   "name": "LinkrunnerDemo",
-  "displayName": "Linkrunner Demo",
-  "expo": {
-    "name": "LinkrunnerDemo",
-    "slug": "linkrunner-demo",
-    "version": "1.0.0",
-    "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "bundleIdentifier": "com.linkrunner.demo"
-    },
-    "android": {
-      "package": "com.linkrunner.demo"
-    }
-  }
+  "displayName": "Linkrunner Demo"
 }

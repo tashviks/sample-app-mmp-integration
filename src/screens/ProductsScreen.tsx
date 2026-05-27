@@ -7,6 +7,7 @@ import {
   ScrollView,
   FlatList,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import {
@@ -114,12 +115,12 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
   const handlePurchase = async () => {
     try {
       if (!userId.trim()) {
-        alert('Please enter a User ID to complete purchase');
+        Alert.alert('Missing User ID', 'Please enter a User ID to complete purchase');
         return;
       }
 
       if (cartItems.length === 0) {
-        alert('Cart is empty');
+        Alert.alert('Empty Cart', 'Cart is empty');
         return;
       }
 
@@ -152,7 +153,7 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
       console.log('[ProductsScreen] Purchase captured:', orderId);
     } catch (err) {
       console.error('[ProductsScreen] Error capturing purchase:', err);
-      alert('Error capturing purchase');
+      Alert.alert('Error', 'Error capturing purchase');
     } finally {
       setLoading(false);
     }
@@ -161,7 +162,7 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
   const handleRefund = async (orderId: string) => {
     try {
       if (!userId.trim()) {
-        alert('Please enter a User ID');
+        Alert.alert('Missing User ID', 'Please enter a User ID');
         return;
       }
 
@@ -176,7 +177,7 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
       console.log('[ProductsScreen] Refund processed:', orderId);
     } catch (err) {
       console.error('[ProductsScreen] Error processing refund:', err);
-      alert('Error processing refund');
+      Alert.alert('Error', 'Error processing refund');
     } finally {
       setLoading(false);
     }

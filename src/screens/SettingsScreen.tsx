@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   ScrollView,
   Linking,
+  Alert,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import {
@@ -66,7 +67,10 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
       setSuccess(true);
       setTimeout(() => setSuccess(false), 2000);
     } catch (err) {
-      alert('Failed to update configuration: ' + (err instanceof Error ? err.message : 'Unknown error'));
+      Alert.alert(
+        'Failed to update configuration',
+        err instanceof Error ? err.message : 'Unknown error'
+      );
     } finally {
       setLoading(false);
     }
@@ -75,7 +79,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
   const handleHandleDeeplink = async () => {
     try {
       if (!deeplinkUrl.trim()) {
-        alert('Please enter a deep link URL');
+        Alert.alert('Missing URL', 'Please enter a deep link URL');
         return;
       }
 
@@ -88,7 +92,10 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
       setDeeplinkUrl('');
       setTimeout(() => setSuccess(false), 2000);
     } catch (err) {
-      alert('Error processing deep link: ' + (err instanceof Error ? err.message : 'Unknown error'));
+      Alert.alert(
+        'Error processing deep link',
+        err instanceof Error ? err.message : 'Unknown error'
+      );
     } finally {
       setLoading(false);
     }
@@ -97,7 +104,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
   const handleSetClevertapId = async () => {
     try {
       if (!clevertapId.trim()) {
-        alert('Please enter a CleverTap ID');
+        Alert.alert('Missing CleverTap ID', 'Please enter a CleverTap ID');
         return;
       }
 
@@ -110,7 +117,10 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
       setClevertapId('');
       setTimeout(() => setSuccess(false), 2000);
     } catch (err) {
-      alert('Error setting CleverTap ID: ' + (err instanceof Error ? err.message : 'Unknown error'));
+      Alert.alert(
+        'Error setting CleverTap ID',
+        err instanceof Error ? err.message : 'Unknown error'
+      );
     } finally {
       setLoading(false);
     }
@@ -127,7 +137,10 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
       setSuccess(true);
       setTimeout(() => setSuccess(false), 2000);
     } catch (err) {
-      alert('Error toggling PII hashing: ' + (err instanceof Error ? err.message : 'Unknown error'));
+      Alert.alert(
+        'Error toggling PII hashing',
+        err instanceof Error ? err.message : 'Unknown error'
+      );
     }
   };
 
